@@ -11,6 +11,7 @@ public class Spearweapon : MonoBehaviour
     [SerializeField] GameObject rightSpearObject;
     
     playerControle playerMove;
+    [SerializeField] Vector2 spearAttackSize = new Vector2(4f, 2f);
     private void Awake()
     {
         playerMove = GetComponentInParent<playerControle>();
@@ -29,17 +30,27 @@ public class Spearweapon : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("Attack");
+
         timer = timeToAttack;
         if(playerMove.lastHorizontalVector > 0)
         {
-            rightSpearObject.SetActive(true);
-            Debug.Log("Attack right");
+            rightSpearObject.SetActive(true); 
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(rightSpearObject.transform.position, spearAttackSize, 0f);
+            ApplyDamage(colliders);
         }
         else 
         {
             leftSpearObject.SetActive(true);
-            Debug.Log("Attack left");
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(leftSpearObject.transform.position, spearAttackSize, 0f);
+            ApplyDamage(colliders);
+        }
+    }
+
+    private void ApplyDamage(Collider2D[] colliders)
+    {
+        for ( int i = 0; i < colliders.Length; i++)
+        {
+            Debug.Log(colliders[i].gameObject.name);
         }
     }
 }
