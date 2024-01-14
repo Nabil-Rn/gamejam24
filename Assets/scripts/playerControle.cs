@@ -4,51 +4,22 @@ using UnityEngine;
 
 public class playerControle : MonoBehaviour
 {
-    public float moveSpeed = 5f; 
-    public Rigidbody2D rb;
-    public SpriteRenderer spriteRenderer;
+    public float moveSpeed = 0.1f;  // Corrected variable declaration
 
-    public Sprite walkLeftSprite;
-    public Sprite walkRightSprite;
-    public Sprite walkUpSprite;
-    public Sprite walkDownSprite;
+    public Rigidbody2D rb;
 
     Vector2 movement;
 
+    // Update is called once per frame
     void Update()
     {
-        // Get input for movement
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-
-        // Set the appropriate sprite based on the movement direction
-        UpdateSprite();
     }
 
     void FixedUpdate()
     {
-        // Move the player
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * moveSpeed);
     }
 
-    void UpdateSprite()
-    {
-        // Update sprite based on movement direction
-        if (movement.x > 0)
-        {
-            spriteRenderer.sprite = walkRightSprite;
-        }
-        else if (movement.x < 0)
-        {
-            spriteRenderer.sprite = walkLeftSprite;
-        }
-        else if (movement.y > 0)
-        {
-            spriteRenderer.sprite = walkUpSprite;
-        }
-        else if (movement.y < 0)
-        {
-            spriteRenderer.sprite = walkDownSprite;
-        }
-    }
 }
