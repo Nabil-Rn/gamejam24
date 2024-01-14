@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/gameOverScreen.unity
+    guid: 6acec4225590b407b936be9544e9a4d9
+  - enabled: 1
+    path: Assets/Scenes/startScreen.unity
+    guid: 32870b2715338034890e20172effb591
   m_configObjects: {}
