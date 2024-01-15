@@ -5,13 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class menuButton : MonoBehaviour
 {
-    public void onStartButton()
+    public void onStartLevelButton()
     {
-        //SceneManager.LoadScene(/*Name of screne*/);
+        SceneManager.LoadScene("levelOne");
     }
 
-    public void onQuitButton()
+    public void onStartGameButton()
     {
+        // SceneManager.LoadScene(/* Name of the dialogue scene*/);
+        Debug.Log("start game");
+    }
+     public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
+    }
+
+    public void onMenuButton()
+    {
+        SceneManager.LoadScene("startScreen");
     }
 }

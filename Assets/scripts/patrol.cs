@@ -31,12 +31,26 @@ public class patrol : MonoBehaviour
     {
         Patrol();
         DrawFieldOfView();
+        FlipSprite();
 
         // Check for player in the field of view
         if (PlayerInFOV())
         {
             KillPlayer();
         }
+    }
+
+    void FlipSprite()
+    {
+        Vector3 localScale = transform.localScale;
+
+        if (Mathf.Abs(patrolPoints[currentPatrolIndex].position.x - transform.position.x) > 0.1f)
+        {
+            // If the patrol point is to the right, flip the sprite to face right
+            localScale.x = Mathf.Sign(patrolPoints[currentPatrolIndex].position.x - transform.position.x);
+        }
+
+        transform.localScale = localScale;
     }
 
     void Patrol()
